@@ -1,0 +1,52 @@
+[tool.black]
+line-length = 110
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 110
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+known_first_party = ""
+known_local_folder = "tests,the_amazing_book_of_everything"
+sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+default_section = "THIRDPARTY"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+asyncio_mode="auto"
+addopts = "-vv --cov-report=term-missing --cov=the_amazing_book_of_everything --cov-config .coveragerc -m 'not local'"
+pytestenvvars__env_files = [
+    ".env",
+]
+
+[tool.poetry]
+name = "the-amazing-book-of-everything"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Serra <lucas.serra@duckode.com.br>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "*"
+loguru = "*"
+
+[tool.poetry.dev-dependencies]
+coverage = "*"
+ipdb = "*"
+ipython = "*"
+pre-commit = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+pytest-deadfixtures = "*"
+pytest-envvars = "*"
+pytest-randomly = "*"
+black = "*"
+factory-boy = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
